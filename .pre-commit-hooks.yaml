@@ -1,0 +1,9 @@
+- id: yaml-update-last-modified-date
+  name: yaml-update-last-modified-date
+  description: |
+      Automatically set the last modified date in YAML front matter of edited markdown files.
+      https://proinsias.github.io/yaml-update-last-modified-date/
+  entry: yaml-update-last-modified-date
+  language: script
+  stages: [commit, manual]
+  types: [shell]
