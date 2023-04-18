@@ -23,8 +23,8 @@ This script will:
 
 <!-- toc -->
 
-- [Credits](#credits)
-- [Updating the Table of Contents of this file](#updating-the-table-of-contents-of-this-file)
+-   [Credits](#credits)
+-   [Updating the Table of Contents of this file](#updating-the-table-of-contents-of-this-file)
 
 <!-- tocstop -->
 
