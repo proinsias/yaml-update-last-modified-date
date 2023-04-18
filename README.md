@@ -19,7 +19,7 @@ This script will:
    in their YAML front matter, if present, and
 3. update the value of that variable to the current Universal Time Coordinated (UTC) time.
 
-See below for instructions on how to install this script as a
+See below for instructions on how to install this script as a local command or as a
 [pre-commit](https://github.com/pre-commit/pre-commit) git hook.
 
 ## Table of Contents
@@ -30,6 +30,16 @@ See below for instructions on how to install this script as a
 -   [Updating the Table of Contents of this file](#updating-the-table-of-contents-of-this-file)
 
 <!-- tocstop -->
+
+## Installation yaml-update-last-modified-date via homebrew
+
+If necessary, first install [homebrew](https://docs.brew.sh)!
+
+Then:
+
+```shell
+brew install proinsias/yaml-update-last-modified-date/yaml-update-last-modified-date
+```
 
 ## Using yaml-update-last-modified-date with pre-commit
 
@@ -46,6 +56,10 @@ Add this to your `.pre-commit-config.yaml`:
 
 Thanks to [Michael Rose](https://github.com/mmistakes) for the
 [original script](https://mademistakes.com/notes/adding-last-modified-timestamps-with-git/).
+
+## License
+
+See [LICENSE](LICENSE).
 
 ## Updating the Table of Contents of this file
 
