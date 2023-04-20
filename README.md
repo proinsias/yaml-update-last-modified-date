@@ -4,20 +4,17 @@ Automatically set the last modified date in YAML front matter of edited markdown
 
 ## Quick start
 
-Just `cd` into a folder containing a git repository, and run:
-
-```shell
-curl --location --remote-name \
-    https://raw.githubusercontent.com/proinsias/yaml-update-last-modified-date/main/yaml-update-last-modified-date \
-&& /usr/bin/env bash yaml-update-last-modified-date
-```
+1. `cd` into a folder containing a git repository.
+2. `git add` a modified markdown file that has `last_modified_at` in its YAML front matter.
+3. Get this script: `curl --location --remote-name https://raw.githubusercontent.com/proinsias/yaml-update-last-modified-date/main/yaml-update-last-modified-date`
+4. Run the script: `bash yaml-update-last-modified-date`.
 
 This script will:
 
-1. look for markdown files that differ from the current `HEAD`,
-2. check to see if they contain the specified last-modified-date variable (`last modified date` by default)
+1. Look for markdown files that differ from the current `HEAD`,
+2. Check to see if they contain the specified last-modified-date variable (`last_modified_at` by default)
    in their YAML front matter, if present, and
-3. update the value of that variable to the current Universal Time Coordinated (UTC) time.
+3. Update the value of that variable to the current Universal Time Coordinated (UTC) time.
 
 See below for instructions on how to install this script as a local command or as a
 [pre-commit](https://github.com/pre-commit/pre-commit) git hook.

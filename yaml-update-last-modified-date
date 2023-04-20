@@ -1,28 +1,37 @@
-#!/usr/bin/env bash
+#!/usr/bin/env python
+"""Set the last modified date in YAML front matter of edited markdown files.
 
-set -o errexit                # Exit on error. Append || true if you expect an error.
-set -o errtrace               # Exit on error inside any functions or subshells.
-set -o noclobber              # Don't allow overwriting files.
-set -o nounset                # Don't allow use of undefined vars. Use ${VAR:-} to use an undefined VAR.
-set -o pipefail               # Produce a failure return code if any pipeline command errors.
-shopt -s failglob             # Cause globs that don't get expanded to cause errors.
-shopt -s globstar 2>/dev/null # Match all files and zero or more sub-directories.
+Credit to Michael Rose (@mmistakes) for the basis of this script.
+https://mademistakes.com/notes/adding-last-modified-timestamps-with-git/
 
-# Credit to Michael Rose (@mmistakes) for the basis of this script.
-# https://mademistakes.com/notes/adding-last-modified-timestamps-with-git/ .
+Credit to ChatGPT for help converting it to python.
+"""
 
-TMPFILE="$(mktemp)"
-export TMPFILE
+import datetime as dt
+import os
+import subprocess
+import tempfile
 
-LAST_MODIFIED_AT="$(date -u "+%Y-%m-%d %H:%M:%S")"
-export LAST_MODIFIED_AT
+# Get a temporary file name to use in the script.
+tmpfile = tempfile.mktemp()
 
-# shellcheck disable=SC2034
-git diff --cached --name-status |
-    (grep --ignore-case --extended-regexp "^(A|M).*\.(md)$" || true) |
-    while read -r a b; do
-        sed "/---.*/,/---.*/s/^last_modified_at:.*$/last_modified_at: ${LAST_MODIFIED_AT}/" "${b}" >|"${TMPFILE}"
-        mv -f "${TMPFILE}" "${b}"
-        git add "${b}"
-        echo "Updated modified date for ${b}."
-    done
+# Get the current timestamp.
+last_modified_at = dt.datetime.now(dt.timezone.utc).strftime('%Y-%m-%d %H:%M:%S')
+
+# Use Git to get a list of modified Markdown files.
+git_output = subprocess.check_output(['git', 'diff', '--cached', '--name-status']).decode()
+modified_files = [line.split('\t')[1] for line in git_output.splitlines() if line.startswith('A') or line.startswith('M') and line.endswith('.md')]
+
+# Update the last_modified_at field in each file.
+for file in modified_files:
+    with open(file, 'r') as f:
+        lines = f.readlines()
+    with open(tmpfile, 'w') as f:
+        for line in lines:
+            if line.startswith('last_modified_at:'):
+                f.write(f'last_modified_at: {last_modified_at}\n')
+            else:
+                f.write(line)
+    os.replace(tmpfile, file)
+    subprocess.check_call(['git', 'add', file])
+    print(f'Updated modified date for {file}.')
