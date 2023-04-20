@@ -8,21 +8,19 @@ Credit to ChatGPT for help converting it to python.
 """
 
 import datetime as dt
+import git
 import os
-import subprocess
 import tempfile
 
-# Get a temporary file name to use in the script.
-tmpfile = tempfile.mktemp()
-
-# Get the current timestamp.
-last_modified_at = dt.datetime.now(dt.timezone.utc).strftime('%Y-%m-%d %H:%M:%S')
-
 # Use Git to get a list of modified Markdown files.
-git_output = subprocess.check_output(['git', 'diff', '--cached', '--name-status']).decode()
-modified_files = [line.split('\t')[1] for line in git_output.splitlines() if line.startswith('A') or line.startswith('M') and line.endswith('.md')]
+repo = git.Repo(search_parent_directories=True)
+diff_index = repo.index.diff('HEAD')
+modified_files = [diff.a_path for diff in diff_index if diff.change_type != 'D']
+modified_files = [file for file in modified_files if file.endswith('.md')]
 
 # Update the last_modified_at field in each file.
+tmpfile = tempfile.mktemp()
+last_modified_at = dt.datetime.now(dt.timezone.utc).strftime('%Y-%m-%d %H:%M:%S')
 for file in modified_files:
     with open(file, 'r') as f:
         lines = f.readlines()
@@ -33,5 +31,5 @@ for file in modified_files:
             else:
                 f.write(line)
     os.replace(tmpfile, file)
-    subprocess.check_call(['git', 'add', file])
+    repo.git.add(file)
     print(f'Updated modified date for {file}.')
