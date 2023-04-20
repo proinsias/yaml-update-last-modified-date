@@ -6,4 +6,3 @@
   entry: yaml-update-last-modified-date
   language: script
   stages: [commit, manual]
-  types: [shell]
