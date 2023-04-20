@@ -19,6 +19,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v1.1.1] - 2023-04-20
+
 ### Added
 
 -   Instructions for installation via homebrew.
@@ -44,6 +46,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 -   Quick Start section to README.md.
 -   This change log!
 
-[unreleased]: https://github.com/proinsias/yaml-update-last-modified-date/compare/v1.1.0...HEAD
+[unreleased]: https://github.com/proinsias/yaml-update-last-modified-date/compare/v1.1.1...HEAD
+[v1.1.1]: https://github.com/proinsias/yaml-update-last-modified-date/compare/v1.1.0...v1.1.1
 [v1.1.0]: https://github.com/proinsias/yaml-update-last-modified-date/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/proinsias/yaml-update-last-modified-date/releases/tag/v1.0.0
