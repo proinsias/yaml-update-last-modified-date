@@ -19,9 +19,10 @@ export LAST_MODIFIED_AT
 
 # shellcheck disable=SC2034
 git diff --cached --name-status |
-    grep --ignore-case --extended-regexp "^(A|M).*\.(md)$" |
+    (grep --ignore-case --extended-regexp "^(A|M).*\.(md)$" || true) |
     while read -r a b; do
         sed "/---.*/,/---.*/s/^last_modified_at:.*$/last_modified_at: ${LAST_MODIFIED_AT}/" "${b}" >|"${TMPFILE}"
         mv -f "${TMPFILE}" "${b}"
         git add "${b}"
+        echo "Updated modified date for ${b}."
     done
