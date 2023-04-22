@@ -148,16 +148,16 @@ repos:
       hooks:
           - id: pylint
 
-    #    - repo: https://github.com/psf/black
-    #      rev: 22.10.0
-    #      hooks:
-    #          - id: black
-    #
-    #    - repo: https://gitlab.com/PyCQA/flake8
-    #      rev: 3.9.2
-    #      hooks:
-    #          - id: flake8
-    #
+    - repo: https://github.com/psf/black
+      rev: 22.10.0
+      hooks:
+          - id: black
+
+    - repo: https://gitlab.com/PyCQA/flake8
+      rev: 3.9.2
+      hooks:
+          - id: flake8
+
     #    - repo: https://github.com/hadialqattan/pycln
     #      rev: v2.1.1 # Possible releases: https://github.com/hadialqattan/pycln/releases
     #      hooks:
