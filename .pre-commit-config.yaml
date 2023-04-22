@@ -138,16 +138,16 @@ repos:
       hooks:
           - id: dead
 
-    #    - repo: https://github.com/jendrikseipp/vulture
-    #      rev: v2.6
-    #      hooks:
-    #          - id: vulture
-    #
-    #    - repo: https://github.com/pre-commit/mirrors-pylint
-    #      rev: v3.0.0a5
-    #      hooks:
-    #          - id: pylint
-    #
+    - repo: https://github.com/jendrikseipp/vulture
+      rev: v2.6
+      hooks:
+          - id: vulture
+
+    - repo: https://github.com/pre-commit/mirrors-pylint
+      rev: v3.0.0a5
+      hooks:
+          - id: pylint
+
     #    - repo: https://github.com/psf/black
     #      rev: 22.10.0
     #      hooks:
