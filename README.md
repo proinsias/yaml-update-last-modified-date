@@ -44,7 +44,9 @@ Add this to your `.pre-commit-config.yaml`:
       - id: yaml-update-last-modified-date
 ```
 
-<!-- FIXME: Add full docs.
+<!-- 
+FIXME: Add full docs.
+
 ## Full documentation
 
 Available here: [./docs](./docs).

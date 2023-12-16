@@ -1,7 +1,7 @@
 [tool.poetry]
 # Keep these in sync with CHANGELOG.md and the main __init__.py file.
 name = "yaml-update-last-modified-date"
-version = "1.1.1"  # FIXME: Update!
+version = "2.0.0"
 description = "Set the last modified date in YAML front matter of edited markdown files."
 authors = ["Francis T. O'Donovan <proinsias@users.noreply.github.com>"]
 license = "Unlicense"
@@ -24,6 +24,7 @@ classifiers = [
   "Topic :: Utilities",
 ]
 keywords = ["markdown", "yaml", "pre-commit", "jeykll", "pre-commit-hook"]
+include = ["AUTHORS", "LICENSE", "README.md", "CHANGELOG.md"]
 
 [tool.poetry.urls]
 "Bug Tracker" = "https://proinsias.github.io/yaml-update-last-modified-date/issues"
